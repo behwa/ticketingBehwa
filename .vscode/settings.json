@@ -1,0 +1,5 @@
+{
+    "javascript.preferences.autoImportFileExcludePatterns": [
+        "\"editor.defaultFormatter\": \"esbenp.prettier-vscode\""
+    ]
+}

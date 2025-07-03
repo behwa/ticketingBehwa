@@ -1,0 +1,47 @@
+import axios from 'axios';
+
+export default ({ req }) => {
+    console.log('harlo coming build client here?')
+    // console.log('req.headers = ' + JSON.stringify(req.headers))
+    if(typeof window === 'undefined') { 
+        console.log('this is not a window')
+        // we are on server 
+        return axios.create({
+            baseURL: 'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local',
+            headers: req.headers
+        })
+    } else {
+        console.log('this is window router to /')
+        // we are on browser
+        return axios.create({
+            baseUrl: '/'
+        })
+    }
+}
+
+// LandingPage.getInitialProps = async (context) => {
+//   // const { req } = context;
+//   // console.log('harlo there = ' + req.headers)
+//   try {
+//     if(typeof window === 'undefined') {
+//       console.log('testing')
+//       const { data } = await axios.get(
+//         'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local/api/users/currentuser',
+//         {
+//           headers: req.headers, // Important: forward cookies/session
+//         }
+//       );
+//       console.log('harlo there 3= ' +req.headers)
+//       return data;
+//     } else {
+//       // we are on browser
+//       // request can be make with a base url of ''
+//       console.log('whowho')
+//       const { data } = await axios.get('/api/users/currentUser')
+//       return data
+//     }
+//   } catch (err) {
+//     console.log('Error fetching current user:', err.message);
+//     return { currentUser: null };
+//   }
+// };

@@ -1,0 +1,69 @@
+jest.mock('../nats-wrapper');
+
+import { MongoMemoryServer } from "mongodb-memory-server";
+import mongoose from "mongoose";
+import request from "supertest";
+import { app } from "../app";
+import jwt from 'jsonwebtoken';
+
+declare global {
+  var signin: () => Promise<string[]>;
+}
+
+let mongo: any;
+beforeAll(async() => {
+    process.env.JWT_KEY = "privateKeyBehwa"
+    const mongo = await MongoMemoryServer.create();
+    const mongoUri = mongo.getUri();
+
+    await mongoose.connect(mongoUri, {});
+});
+
+
+
+beforeEach(async () => {
+
+    if (mongoose.connection.readyState === 1 && mongoose.connection.db) {
+        const db = mongoose.connection.db;
+        // safe to use db here
+
+        const collections = await mongoose.connection.db.collections();
+
+        for(let collection of collections) {
+            await collection.deleteMany({})
+        }
+    }
+});
+
+afterAll(async () => {
+  if (mongo) {
+    await mongo.stop();
+  }
+  await mongoose.connection.close();
+});
+
+global.signin = async () => {
+  // Build a JWT payload. { id, email, iat }
+  const payload = {
+    // id: '12345678',
+    id: new mongoose.Types.ObjectId().toHexString(),
+    email: 'test@test.com'
+  };
+
+  // Create the JWT!
+  const token = jwt.sign(payload, process.env.JWT_KEY!);
+
+  // Build a session object. { jwt: MY_JWT }
+  const session = { jwt: token };
+
+  // Turn JSON and encode it as base64
+  const sessionJSON = JSON.stringify(session);
+
+  // return a string that cookie with encoded data. - how turn thing into 64base
+  const base64 = Buffer.from(sessionJSON).toString('base64');
+
+  // session=eyJqd3QiOiJleUpoYkdjaU9pSklVekkxTmlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKcFpDSTZJalk0TlRKalpqTmlNVFkwTmpKall6QTNObUU1TmpJMU1DSXNJbVZ0WVdsc0lqb2lkR1Z6ZEVCMFpYTjBMbU52YlNJc0ltbGhkQ0k2TVRjMU1ESTFOelEyTjMwLlY0bWZQeUlaRzhHbWxCSHJtekowSHBlVlNlT0J0YXVXbm1EaG1fM2podEUifQ==
+  return [`session=${base64}`];
+};
+
+// return [`session=${base64}`];
