@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node-dev src/index.ts",
-    "test": "jest --watchAll --no-cahce"
+    "test": "jest --watchAll --no-cahce",
+    "test:ci": "jest"
   },
   "jest": {
     "preset": "ts-jest",
