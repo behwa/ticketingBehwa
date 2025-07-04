@@ -3,7 +3,7 @@ import mongoose from 'mongoose'; // need to install type defination file
 import { app } from './app';
 
 const start = async () => {
-  console.log('Starting up...');
+  console.log('Starting up...222');
   if(!process.env.JWT_KEY) {
     throw new Error('JWT_KEY must be defined!')
   }
