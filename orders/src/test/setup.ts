@@ -1,5 +1,5 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
-import mongoose from 'mongoose';
+import mongoose, { ConnectOptions } from "mongoose";
 // import request from 'supertest';
 // import { app } from '../app';
 import jwt from 'jsonwebtoken';
@@ -12,14 +12,15 @@ jest.mock('../nats-wrapper');
 
 
 let mongo: any;
-beforeAll(async () => {
-  process.env.JWT_KEY = "privateKeyBehwa"
-  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+beforeAll(async() => {
+    process.env.JWT_KEY = "privateKeyBehwa"
+    mongo = await MongoMemoryServer.create();
+    const mongoUri = mongo.getUri();
 
-  const mongo = await MongoMemoryServer.create();
-  const mongoUri = mongo.getUri();
-
-  await mongoose.connect(mongoUri, {});
+    await mongoose.connect(mongoUri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    } as ConnectOptions);
 });
 
 beforeEach(async () => {
