@@ -20,7 +20,7 @@ const LandingPage = ({ currentUser, tickets }) => {
     <div className="container py-5">
       <h2 className="mb-4 fw-semibold text-center gradient-title">🎟️ Available Tickets!</h2>
 
-      {tickets.length === 0 ? (
+      {!tickets || tickets.length === 0 ? (
         <div className="alert alert-info text-center">No tickets available yet.</div>
       ) : (
         <div className="shadow-lg rounded overflow-hidden">
