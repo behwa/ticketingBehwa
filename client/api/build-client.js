@@ -7,8 +7,8 @@ export default ({ req }) => {
         console.log('this is not a window')
         // we are on server 
         return axios.create({
-            baseURL: 'http://www.behwa-ticketing-app-prod.online',
-            // baseURL: 'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local',
+            // baseURL: 'http://www.behwa-ticketing-app-prod.online',
+            baseURL: 'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local',
             headers: req.headers
         })
     } else {
