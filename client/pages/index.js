@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 const LandingPage = ({ currentUser, tickets }) => {
-  const ticketList = tickets.map((ticket, index) => (
+  const ticketList = (tickets || []).map((ticket, index) => (
     <tr
       key={ticket.id}
       className={index % 2 === 0 ? 'table-row-light' : 'table-row-dark'}

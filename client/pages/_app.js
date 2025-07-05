@@ -41,17 +41,17 @@ AppComponent.getInitialProps = async (appContext) => {
         console.log('pageProps')
         console.log(pageProps);
 
-        console.log('my data = ')
+        console.log('data =', data);
         // console.log(data);
-
-        return {
-            pageProps,
-            currentUser,
-        };
 
     } catch (err) {
         console.error('Error fetching current user in _app:', err.message);
     }
+
+    return {
+        pageProps,
+        currentUser,
+    };
 }
 
 export default AppComponent;
