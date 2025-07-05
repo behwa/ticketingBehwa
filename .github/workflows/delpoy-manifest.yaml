@@ -17,7 +17,7 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - run: doctl kubernetes cluster kubeconfig save k8s-1-33-1-do-0-sgp1-1751704911382
 
-      - name: Apply Dev and Prod K8s manifests
+      - name: Apply Dev and Prod K8s manifests Test
         run: |
           set -e
           echo "Applying Dev manifests..."
