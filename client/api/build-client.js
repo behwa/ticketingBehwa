@@ -15,7 +15,7 @@ export default ({ req }) => {
         console.log('this is window router to /')
         // we are on browser
         return axios.create({
-            baseUrl: '/'
+            baseURL: '/'
         })
     }
 }
