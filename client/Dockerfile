@@ -5,7 +5,7 @@ COPY package.json .
 RUN npm install
 COPY . .
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "start"]
 
 # # Step 1: Build the Next.js app
 # FROM node:alpine as builder
