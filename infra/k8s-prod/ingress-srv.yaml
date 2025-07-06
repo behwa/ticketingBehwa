@@ -14,7 +14,7 @@ spec:
   ingressClassName: nginx
   rules:
     # - host: ticketing.dev
-    - host: www.behwa-ticketing-app-prod.online/
+    - host: www.behwa-ticketing-app-prod.online
       http:
         paths:
           # - path: /api/users/currentuser
