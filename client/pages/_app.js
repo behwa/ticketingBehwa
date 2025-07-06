@@ -32,6 +32,7 @@ AppComponent.getInitialProps = async (appContext) => {
         const { data } = await client.get('/api/users/currentuser');
         console.log('testing here what is data = ' + data)
         currentUser = data.currentUser;
+        console.log('here is _app.js client')
 
         // Allow individual page components to also fetch data
         if (appContext.Component.getInitialProps) {
