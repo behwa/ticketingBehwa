@@ -62,7 +62,7 @@ metadata:
   name: ingress-nginx-controller
   namespace: ingress-nginx
   annotations:
-    service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: 'true'
+    # service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: 'true'
     service.beta.kubernetes.io/do-loadbalancer-hostname: 'www.behwa-ticketing-app-prod.online'
   labels:
     helm.sh/chart: ingress-nginx-2.0.3
