@@ -5,7 +5,6 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     service.beta.kubernetes.io/do-loadbalancer-http-ports: "80"
-    service.beta.kubernetes.io/do-loadbalancer-http2-ports: "443,80"
   # namespace: auth
   # annotations:
   #   nginx.ingress.kubernetes.io/rewrite-target: /
@@ -61,9 +60,9 @@ kind: Service
 metadata:
   name: ingress-nginx-controller
   namespace: ingress-nginx
-  # annotations:
-    # service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: 'true'
-    # service.beta.kubernetes.io/do-loadbalancer-hostname: 'www.behwa-ticketing-app-prod.online'
+  annotations:
+    service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: 'true'
+    service.beta.kubernetes.io/do-loadbalancer-hostname: 'www.behwa-ticketing-app-prod.online'
   labels:
     helm.sh/chart: ingress-nginx-2.0.3
     app.kubernetes.io/name: ingress-nginx
