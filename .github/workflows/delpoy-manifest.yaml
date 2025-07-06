@@ -18,9 +18,4 @@ jobs:
       - run: doctl kubernetes cluster kubeconfig save k8s-1-33-1-do-0-syd1-1751733248245
 
       - name: Apply Dev and Prod K8s manifests test 3 test3
-        run: |
-          set -e
-          echo "Applying Dev manifests..."
-          kubectl apply -f infra/k8s
-          echo "Applying Prod manifests..."
-          kubectl apply -f infra/k8s-prod
+        run: kubectl apply -f infra/k8s && kubectl apply -f infra/k8s-prod
