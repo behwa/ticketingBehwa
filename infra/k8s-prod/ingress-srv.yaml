@@ -5,7 +5,6 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     service.beta.kubernetes.io/do-loadbalancer-http-ports: "80"
-    service.beta.kubernetes.io/do-loadbalancer-http2-ports: "443,80"
   # namespace: auth
   # annotations:
   #   nginx.ingress.kubernetes.io/rewrite-target: /
