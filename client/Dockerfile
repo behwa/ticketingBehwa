@@ -1,27 +1,27 @@
-FROM node:alpine
-
-WORKDIR /app
-COPY package.json .
-RUN npm install
-COPY . .
-
-CMD ["npm", "run", "start"]
-
-# # Step 1: Build the Next.js app
-# FROM node:alpine as builder
+# FROM node:alpine
 
 # WORKDIR /app
 # COPY package.json .
 # RUN npm install
 # COPY . .
-# RUN npm run build
 
-# # Step 2: Serve using next start
-# FROM node:alpine
+# CMD ["npm", "run", "start"]
 
-# WORKDIR /app
-# COPY --from=builder /app ./
-# RUN npm install --production
+# Base image
+FROM node:18-alpine
 
-# EXPOSE 3000
-# CMD ["npm", "start"]
+# Set working directory
+WORKDIR /app
+
+# Install dependencies
+COPY package.json ./
+RUN npm install
+
+# Copy remaining source code
+COPY . .
+
+# Build the Next.js app
+RUN npm run build
+
+# Start Next.js in production mode
+CMD ["npm", "run", "start"]
