@@ -14,7 +14,7 @@ spec:
   ingressClassName: nginx
   rules:
     # - host: ticketing.dev
-    - host: www.behwa-ticketing-app-prod.online
+    - host: www.behwa-ticketing-app-prod.online/
       http:
         paths:
           # - path: /api/users/currentuser
@@ -63,7 +63,7 @@ metadata:
   namespace: ingress-nginx
   annotations:
     service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: 'true'
-    service.beta.kubernetes.io/do-loadbalancer-hostname: 'www.behwa-ticketing-app-prod.online'
+    service.beta.kubernetes.io/do-loadbalancer-hostname: ''
   labels:
     helm.sh/chart: ingress-nginx-2.0.3
     app.kubernetes.io/name: ingress-nginx
