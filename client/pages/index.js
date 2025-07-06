@@ -27,7 +27,7 @@ const LandingPage = ({ currentUser, tickets }) => {
           <table className="table mb-0">
             <thead className="gradient-header text-white">
               <tr>
-                <th className="header-cell">Title</th>
+                <th className="header-cell">TITLE</th>
                 <th className="header-cell">Price</th>
                 <th className="header-cell">Link</th>
               </tr>
