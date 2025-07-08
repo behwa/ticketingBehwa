@@ -61,8 +61,8 @@ kind: Service
 metadata:
   name: ingress-nginx-controller
   namespace: ingress-nginx
-  annotations:
-    service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: 'true'
+  # annotations:
+    # service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: 'true'
   labels:
     helm.sh/chart: ingress-nginx-2.0.3
     app.kubernetes.io/name: ingress-nginx
